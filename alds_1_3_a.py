@@ -3,21 +3,24 @@
 class MyStack:
     def __init__(self):
         self.stack = []
-    
-    def pop(self):
-        return self.stack.pop()
-    
-    def push(self, x):
-        self.stack.append(x)
 
     def isEmpty(self):
-        if len(self.stack)==0:
+        if len(self.stack)<=0:
             return True
         else:
             return False
     
     def isFull(self):
         pass
+    
+    def pop(self):
+        if self.isEmpty():
+            print("there aren't enough values")
+        else:
+            return self.stack.pop()
+    
+    def push(self, x):
+        self.stack.append(x)
     
     def calculate(self, x):
         if type(x)==int:
@@ -31,6 +34,10 @@ class MyStack:
                 self.push(a-b)
             elif x=='*':
                 self.push(a*b)
+            else:
+                print("the operand should be + or - or *")
+        else:
+            print("the input should be int or str")
 
 
 def main():
