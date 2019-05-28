@@ -1,4 +1,5 @@
 import time
+import copy
 
 def BubbleSort(A, N):
     flag = 1
@@ -23,25 +24,24 @@ def SelectionSort(A, N):
 def IsStable(answer, target):
     N = len(answer)
     for i in range(N):
-        if answer[i]['value'] != target[i]['value']:
+        if answer[i]['body'] != target[i]['body']:
             return False
     return True
 
 # Stable Sort
 def main():
     N = int(input())
-    A = tuple(
+    A = list(
         map(lambda x: {'body': x, 'value': int(x[1])}, input().split())
     )
-    print(A)
-    bubble = BubbleSort(A, N)
-    print(A)
-    selection = SelectionSort(A, N)
-    print(A)
-    print(' '.join(map(lambda x: x['body'],bubble)))
+    A_sortby_bubble = copy.deepcopy(A)
+    A_sortby_select = copy.deepcopy(A)
+    A_sortby_bubble = BubbleSort(A_sortby_bubble, N)
+    A_sortby_select = SelectionSort(A_sortby_select, N)
+    print(' '.join(map(lambda x: x['body'],A_sortby_bubble)))
     print('Stable')
-    print(' '.join(map(lambda x: x['body'], selection)))
-    if IsStable(bubble, selection):
+    print(' '.join(map(lambda x: x['body'], A_sortby_select)))
+    if IsStable(A_sortby_bubble, A_sortby_select):
         print('Stable')
     else:
         print('Not stable') 
