@@ -26,11 +26,8 @@ class MyQueue:
 
 def main():
     n, q = map(int, input().split())
-    A = [
-        list(map(lambda x: int(x) if x.isdigit() else x, input().split()))
-        for i in range(n)
-    ]
-    A = [{'name': name, 'time': time} for name, time in A]
+    A = [input().split() for i in range(n)]
+    A = [{'name': name, 'time': int(time)} for name, time in A]
     queue = MyQueue()
     for a in A:
         queue.enqueue(a)
