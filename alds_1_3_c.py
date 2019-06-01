@@ -1,5 +1,3 @@
-import time
-
 class Node:
     def __init__(self, key, prev, next):
         self.key = key
@@ -12,14 +10,9 @@ class MyDLL:
         self.linkedlist = []
         self.length = 0
     
-    def isEmpty(self):
-        if self.length==0:
-            return True
-        return False
-    
     def insert(self, x):
         # 連結リストの先頭にキー x を持つ要素を継ぎ足す。
-        if self.isEmpty():
+        if self.length==0:
             # 連結リストが空の時
             new = Node(x, None, None)            
         else:
@@ -49,7 +42,7 @@ class MyDLL:
         
     def deleteFirst(self):
         # リストの先頭の要素を削除する。
-        if not self.isEmpty():
+        if not self.length==0:
             first = self.linkedlist.pop(0)
             if self.length>1:
                 first.next.prev = None
@@ -59,7 +52,7 @@ class MyDLL:
         
     def deleteLast(self):
         # リストの末尾の要素を削除する。        
-        if not self.isEmpty():
+        if not self.length==0:
             last = self.linkedlist.pop()
             if self.length>1:
                 last.prev.next = None
@@ -68,7 +61,7 @@ class MyDLL:
             print("List is empty")
         
     def print(self):
-        if not self.isEmpty():
+        if not self.length==0:
             print(' '.join([node.key for node in self.linkedlist]))
         else:
             print('')
@@ -78,20 +71,7 @@ def main():
     n = 1786329# int(input())
     # n = int(input())
     commands = (input() for i in range(n)) # generator式リスト内包表記
-    # commands = ({'order': c[0], 'value': c[1]} if len(c)==2 else {'order': c[0]} for c in commands)
     dll = MyDLL()
-    # for c in commands:
-    #     if c['order']=='insert':
-    #         dll.insert(c['value'])
-    #     elif c['order']=='delete':
-    #         dll.delete(c['value'])
-    #     elif c['order']=='deleteFirst':
-    #         dll.deleteFirst()
-    #     elif c['order']=='deleteLast':
-    #         dll.deleteLast()
-    #     else:
-    #         print("the command dont't exist")
-    #         print(c)
     for c in commands:
         if 'insert' in c:
             dll.insert(c.split()[1])
@@ -106,6 +86,7 @@ def main():
             print(c)
     dll.print()    
 
+import time
 
 if __name__=='__main__':
     start = time.time()
