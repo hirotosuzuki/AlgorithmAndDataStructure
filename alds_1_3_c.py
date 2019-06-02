@@ -1,3 +1,5 @@
+# Double Linked List
+
 class Node:
     def __init__(self, key):
         self.key = key
@@ -14,6 +16,7 @@ class MyDLL:
     
     def insert(self, x):
         # 連結リストの先頭にキー x を持つ要素を継ぎ足す。
+        # 番兵 - 新 - 旧
         new = Node(x)
         new.next = self.sentinel.next # 新しく先頭.next = 番兵.next = 今まで先頭
         self.sentinel.next.prev = new # 番兵.next.prev = 今まで先頭.prev = 新しく先頭
